@@ -92,14 +92,21 @@ with st.form(key='my_form'):
     submit = st.form_submit_button("Submit")
 
 
+# Create an empty container for the response
+response_container = st.empty()
+
 # If the "Ask" button is clicked
 if submit:
+    
+    # Clear the previous response
+    response_container.empty()
+    
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         response = get_chatmodel_response(input_question)
 
     if response is not None:
-        # st.subheader("Here you go,")
+       
         st.write(response)
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
