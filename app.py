@@ -63,7 +63,7 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-input_question = st.text_input("Type here.", key="input")
+input_question = st.text_input("Type here.", key="input",autocomplete="off")
 
 # Apply custom HTML and CSS for styling
 st.markdown(
