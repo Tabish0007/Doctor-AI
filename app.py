@@ -70,9 +70,9 @@ st.markdown(
     """
     <style>
         .stTextInput {
-            border-radius: 45px;
+            border-radius: 15px;
             padding: 12px;
-            margin-top: 10px;
+            margin-top: 60px;
             margin-bottom: 10px;
             box-shadow: 2px 2px 7px #888888;
             border: 1px solid #dddddd;
