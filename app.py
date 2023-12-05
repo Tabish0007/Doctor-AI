@@ -80,7 +80,7 @@ with st.form(key='my_form'):
                 border: 1px solid #dddddd;
                 font-size: 16px;
                 width: 650px;
-                height: 200px;
+                height: 40px;
                 /* Add any additional styling here */
             }
             
