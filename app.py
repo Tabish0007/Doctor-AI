@@ -29,8 +29,26 @@ def get_chatmodel_response(question):
     return None
 
 # Streamlit app setup
-st.set_page_config(page_title="Doctor AI")
-st.header("Hello, I'm a Doctor AI. how can I help you?")
+st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
+# Set page background
+st.markdown(
+    """
+    <style>
+        body {
+            background-color: #f0f0f0;  /* Set your desired background color */
+        }
+        .stTextInput, .stButton {
+            border-radius: 10px;  /* Add border-radius for a nicer input bar */
+            padding: 10px;  /* Adjust padding for better spacing */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+
+st.header("Hello, I'm a Doctor AI. How can I help you?")
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -45,11 +63,14 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-input_question = st.text_input("Type here.", key="input")
-submit = st.button("Submit")
+# Streamlit UI with styled input bars
+input_question = st.text_input("Type here.", key="input", class="stTextInput")
+submit = st.button("Submit", class="stButton")
 
 # If the "Ask" button is clicked
 if submit:
+    # Display loading message while processing
+    with st.spinner("Analyzing..."):
     response = get_chatmodel_response(input_question)
 
     if response is not None:
