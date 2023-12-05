@@ -30,21 +30,21 @@ def get_chatmodel_response(question):
 
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
-# Set page background
-st.markdown(
-    """
-    <style>
-        body {
-            background-color: #f0f0f0;  /* Set your desired background color */
-        }
-        .stTextInput, .stButton {
-            border-radius: 50px;  /* Add border-radius for a nicer input bar */
-            padding: 50px;  /* Adjust padding for better spacing */
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# # Set page background
+# st.markdown(
+#     """
+#     <style>
+#         body {
+#             background-color: #f0f0f0;  /* Set your desired background color */
+#         }
+#         .stTextInput, .stButton {
+#             border-radius: 50px;  /* Add border-radius for a nicer input bar */
+#             padding: 50px;  /* Adjust padding for better spacing */
+#         }
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
 
 
 
