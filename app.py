@@ -64,8 +64,9 @@ if 'flowmessages' not in st.session_state:
 
 # Streamlit UI
 # Streamlit UI with styled input bars
-input_question = st.text_input("Type here.", key="input", class="stTextInput")
-submit = st.button("Submit", class="stButton")
+input_question = st.text_input("Type here.", key="input", style="stTextInput")
+submit = st.button("Submit", style="stButton")
+
 
 # If the "Ask" button is clicked
 if submit:
