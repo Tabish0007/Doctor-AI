@@ -63,24 +63,29 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-with st.form(key='my_form'):
-    input_question = st.text_input("Type here.", key="input")
+input_question = st.text_input("Type here.", key="input")
 
-    # Apply custom HTML and CSS for styling
-    st.markdown(
-        """
-        <style>
-            .stTextInput {
-                border-radius: 10px;
-                padding: 10px;
-                /* Add any additional styling here */
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+# Apply custom HTML and CSS for styling
+st.markdown(
+    """
+    <style>
+        .stTextInput {
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            box-shadow: 2px 2px 5px #888888;
+            border: 1px solid #dddddd;
+            font-size: 16px;
+            width: 300px;
+            /* Add any additional styling here */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-    submit = st.form_submit_button("Submit", on_click=get_chatmodel_response, args=(input_question,))
+submit = st.button("Submit")
 
 
 # If the "Ask" button is clicked
