@@ -63,44 +63,44 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-input_question = st.text_input("Type here.", key="input",autocomplete="off")
+# Streamlit UI
+with st.form(key='my_form'):
+    input_question = st.text_input("Type here.", key="input")
 
-# Apply custom HTML and CSS for styling
-st.markdown(
-    """
-    <style>
-        .stTextInput {
-            border-radius: 15px;
-            padding: 12px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            box-shadow: 2px 2px 5px #888888;
-            border: 1px solid #dddddd;
-            font-size: 16px;
-            width: 700px;
-            /* Add any additional styling here */
-        }
-        /* Hide the "press enter to apply" message */
-        .stTextInput::-webkit-input-placeholder {
-            color: transparent;
-        }
-        .stTextInput:-moz-placeholder {
-            color: transparent;
-        }
-        .stTextInput::-moz-placeholder {
-            color: transparent;
-        }
-        .stTextInput:-ms-input-placeholder {
-            color: transparent;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-        
+    # Apply custom HTML and CSS for styling
+    st.markdown(
+        """
+        <style>
+            .stTextInput {
+                border-radius: 15px;
+                padding: 12px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                box-shadow: 2px 2px 5px #888888;
+                border: 1px solid #dddddd;
+                font-size: 16px;
+                width: 700px;
+                /* Add any additional styling here */
+            }
+            /* Hide the "press enter to apply" message */
+            .stTextInput::-webkit-input-placeholder {
+                color: transparent;
+            }
+            .stTextInput:-moz-placeholder {
+                color: transparent;
+            }
+            .stTextInput::-moz-placeholder {
+                color: transparent;
+            }
+            .stTextInput:-ms-input-placeholder {
+                color: transparent;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
-
-submit = st.button("Submit")
+    submit = st.form_submit_button("Submit")
 
 
 # If the "Ask" button is clicked
