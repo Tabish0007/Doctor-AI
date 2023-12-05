@@ -72,7 +72,7 @@ submit = st.button("Submit", style="stButton")
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
-    response = get_chatmodel_response(input_question)
+        response = get_chatmodel_response(input_question)
 
     if response is not None:
         # st.subheader("Here you go,")
