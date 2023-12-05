@@ -80,17 +80,17 @@ with st.form(key='my_form'):
         unsafe_allow_html=True
     )
 
-    submit = st.form_submit_button("Submit", key="submit")
+    submit = st.form_submit_button("Submit", on_click=get_chatmodel_response, args=(input_question,))
 
 
-    # If the "Ask" button is clicked
-    if submit:
-        # Display loading message while processing
-        with st.spinner("Analyzing..."):
-            response = get_chatmodel_response(input_question)
-    
-        if response is not None:
-            # st.subheader("Here you go,")
-            st.write(response)
-        else:
-            st.subheader("Error: Unable to get response. Please try again later.")
+# If the "Ask" button is clicked
+if submit:
+    # Display loading message while processing
+    with st.spinner("Analyzing..."):
+        response = get_chatmodel_response(input_question)
+
+    if response is not None:
+        # st.subheader("Here you go,")
+        st.write(response)
+    else:
+        st.subheader("Error: Unable to get response. Please try again later.")
