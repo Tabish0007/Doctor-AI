@@ -74,8 +74,8 @@ st.markdown(
             padding: 12px;
             margin-top: 10px;
             margin-bottom: 10px;
-            box-shadow: 7px 7px 7px #888888;
-            border: 1px solid #dddddd;
+            box-shadow: 2px 2px 5px #888888;
+            border: 9px solid #dddddd;
             font-size: 16px;
             width: 700px;
             /* Add any additional styling here */
