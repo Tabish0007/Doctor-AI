@@ -59,7 +59,7 @@ chat = ChatOpenAI(temperature=0.5)
 
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
-        SystemMessage(content="Your are an AI Doctor assistant. A user will give an input of what he is suffering from or what health problem he has, you should suggest the user with correct medicine and tell the user how to recover fastly from it. Gve a short and sharp answer. If the input is different from a body or health issue or any other medical issues, tell the user who you are and ask the user to provide the appropriate input.")
+        SystemMessage(content="You are an AI Doctor assistant. Your name is Doctor AI. A user will give input of what he is suffering from or what health problem he has. As a Doctor AI, you should suggest the user with the correct medicine and tell them how to recover quickly from it. Give a short and sharp answer. If the input is different from a body or health issue or any other medical issues, tell the user who you are and ask the user to provide the appropriate input.")
     ]
 
 # Streamlit UI
@@ -92,14 +92,9 @@ with st.form(key='my_form'):
     submit = st.form_submit_button("Submit")
 
 
-# Create an empty container for the response
-response_container = st.empty()
-
 # If the "Ask" button is clicked
 if submit:
-    
-    # Clear the previous response
-    response_container.empty()
+
     
     # Display loading message while processing
     with st.spinner("Analyzing..."):
