@@ -64,7 +64,7 @@ if 'flowmessages' not in st.session_state:
 
 # Streamlit UI
 with st.form(key='my_form'):
-    input_question = st.text_input("Type here.", key="input", class="stTextInput")
+    input_question = st.text_input("Type here.", key="input")
 
     # Apply custom HTML and CSS for styling
     st.markdown(
