@@ -38,8 +38,8 @@ st.markdown(
             background-color: #f0f0f0;  /* Set your desired background color */
         }
         .stTextInput, .stButton {
-            border-radius: 10px;  /* Add border-radius for a nicer input bar */
-            padding: 10px;  /* Adjust padding for better spacing */
+            border-radius: 50px;  /* Add border-radius for a nicer input bar */
+            padding: 50px;  /* Adjust padding for better spacing */
         }
     </style>
     """,
