@@ -48,7 +48,7 @@ st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", 
 
 
 
-st.header("Hello, I'm a Doctor AI. How can I help you?")
+st.header("Hello, I am Doctor AI. How can I help you?")
 
 from dotenv import load_dotenv
 load_dotenv()
