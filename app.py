@@ -70,14 +70,14 @@ st.markdown(
     """
     <style>
         .stTextInput {
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 12px;
             margin-top: 10px;
             margin-bottom: 20px;
             box-shadow: 2px 2px 5px #888888;
             border: 1px solid #dddddd;
             font-size: 16px;
-            width: 300px;
+            width: 500px;
             /* Add any additional styling here */
         }
     </style>
