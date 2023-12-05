@@ -63,7 +63,7 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-input_question = st.text_input("Type here.", key="input")
+input_question = st.text_input("Type here.", key="input",help=None)
 
 # Apply custom HTML and CSS for styling
 st.markdown(
@@ -75,7 +75,7 @@ st.markdown(
             margin-top: 10px;
             margin-bottom: 10px;
             box-shadow: 2px 2px 5px #888888;
-            border: 9px solid #dddddd;
+            border: 1px solid #dddddd;
             font-size: 16px;
             width: 700px;
             /* Add any additional styling here */
