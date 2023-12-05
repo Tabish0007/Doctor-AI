@@ -80,10 +80,17 @@ st.markdown(
             width: 700px;
             /* Add any additional styling here */
         }
+
+        .stButton>button {
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+        }
     </style>
     """,
     unsafe_allow_html=True
 )
+        
+
 
 submit = st.button("Submit")
 
