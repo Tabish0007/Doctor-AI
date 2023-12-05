@@ -66,8 +66,19 @@ if 'flowmessages' not in st.session_state:
 # Streamlit UI with styled input bars
 input_question = st.text_input("Type here.", key="input")
 
-# Apply CSS styles to the input
-input_question.css("border-radius: 10px; padding: 10px;")
+# Apply custom HTML and CSS for styling
+st.markdown(
+    """
+    <style>
+        .stTextInput {
+            border-radius: 10px;
+            padding: 10px;
+            /* Add any additional styling here */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 submit = st.button("Submit", key="submit")
 
