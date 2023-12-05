@@ -63,7 +63,7 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-input_question = st.text_input("Type here.", key="input",disabled=True)
+input_question = st.text_input("Type here.", key="input")
 
 # Apply custom HTML and CSS for styling
 st.markdown(
@@ -79,6 +79,19 @@ st.markdown(
             font-size: 16px;
             width: 700px;
             /* Add any additional styling here */
+        }
+        /* Hide the "press enter to apply" message */
+        .stTextInput::-webkit-input-placeholder {
+            color: transparent;
+        }
+        .stTextInput:-moz-placeholder {
+            color: transparent;
+        }
+        .stTextInput::-moz-placeholder {
+            color: transparent;
+        }
+        .stTextInput:-ms-input-placeholder {
+            color: transparent;
         }
     </style>
     """,
