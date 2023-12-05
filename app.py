@@ -30,7 +30,7 @@ def get_chatmodel_response(question):
 
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI")
-st.header("Hello, how can I help you?!")
+st.header("Hello, I'm a Doctor AI. how can I help you?")
 
 from dotenv import load_dotenv
 load_dotenv()
