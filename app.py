@@ -74,7 +74,7 @@ with st.form(key='my_form'):
             .stTextInput {
                 border: none;
                 background-color: transparent;
-                border-radius: 15px;
+                border-radius: 0;
                 padding: 12px;
                 margin-top: 10px;
                 margin-bottom: 10px;
