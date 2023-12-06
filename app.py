@@ -69,12 +69,10 @@ with st.form(key='my_form'):
         unsafe_allow_html=True
     )
 
-    input_question = st.text_input("Type here.", key="input")
+    input_question_placeholder = st.empty()
+    input_question = input_question_placeholder.text_input("Type here.")
 
     submit = st.form_submit_button("Submit")
-
-
-
 
 # If the "Submit" button is clicked
 if submit:
@@ -86,7 +84,7 @@ if submit:
         # Display the response
         st.write(response)
 
-        # Clear the input question
-        st.session_state.input = ""
+        # Clear the input question by updating the placeholder
+        input_question_placeholder.text_input("Type here.", value="")
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
