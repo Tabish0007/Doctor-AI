@@ -69,16 +69,23 @@ with st.form(key='my_form'):
         unsafe_allow_html=True
     )
 
-    # Use a dynamic key for the text input
-    input_question = st.text_input("Type here.", key=f"input_{st.form_submit_button('Submit')}")
+    input_question = st.text_input("Type here.", key="input")
+
+    submit = st.form_submit_button("Submit")
+
+
+
 
 # If the "Submit" button is clicked
-if st.form_submit_button("Submit"):
+if submit:
+
+    
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         response = get_chatmodel_response(input_question)
 
     if response is not None:
+       
         st.write(response)
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
