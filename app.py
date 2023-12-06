@@ -82,6 +82,10 @@ if submit:
     
     # Display loading message while processing
     with st.spinner("Analyzing..."):
+        st.header(":blue[You]", divider=True)
+        st.caption(input_question)
+        
+        st.header("Doctor AI", divider=True)
         response = get_chatmodel_response(input_question)
 
     if response is not None:
