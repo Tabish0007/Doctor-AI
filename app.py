@@ -88,8 +88,7 @@ with st.form(key='my_form'):
         unsafe_allow_html=True
     )
 
-    # Apply the custom class to the input using st.write
-    st.write(f'<input class="stTextInput" type="text" value="{input_question}" name="input" />', unsafe_allow_html=True)
+    
 
     submit = st.form_submit_button("Submit")
 
