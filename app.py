@@ -85,7 +85,7 @@ if submit:
         # Display the response
         st.write(response)
 
-        # Clear the input question by updating the placeholder
-        st.session_state[input_question_key] = ""
+        # Clear the input question using query parameters
+        st.experimental_set_query_params(**{input_question_key: ""})
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
