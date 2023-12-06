@@ -72,7 +72,7 @@ with st.form(key='my_form'):
         """
         <style>
             /* Add any additional styling here */
-            .stTextInput {
+             .stTextInput {
                 border-radius: 15px;
                 padding: 12px;
                 margin-top: 10px;
@@ -80,8 +80,12 @@ with st.form(key='my_form'):
                 box-shadow: 2px 2px 5px #888888;
                 border: 1px solid #dddddd;
                 font-size: 16px;
-                height:300%;
-                width: 200%;
+                width: 650px;
+                height: 100px;
+                /* Add any additional styling here */
+            }
+            
+        </style>
                 
             }
         </style>
