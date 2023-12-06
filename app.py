@@ -87,6 +87,6 @@ if submit:
         st.write(response)
         
         # Clear the input text after submission
-        st.text_input("Type here.", value="", key="input")
+        st.text_input("Type here.", value="")
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
