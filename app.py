@@ -49,7 +49,6 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-# Streamlit UI
 with st.form(key='my_form'):
     st.markdown(
         """
@@ -79,6 +78,7 @@ with st.form(key='my_form'):
 
 # If the "Submit" button is clicked
 if submit:
+    
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         response = get_chatmodel_response(input_question)
@@ -86,7 +86,7 @@ if submit:
     if response is not None:
         st.write(response)
         
-        # Clear the input text after submission
-        st.text_input("Type here.", value="")
+        # Clear the input after submission
+        input_question = ""
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
