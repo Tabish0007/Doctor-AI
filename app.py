@@ -78,15 +78,15 @@ with st.form(key='my_form'):
 
 # If the "Submit" button is clicked
 if submit:
-    
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         response = get_chatmodel_response(input_question)
 
     if response is not None:
+        # Display the response
         st.write(response)
-        
-        # Clear the input after submission
-        input_question = ""
+
+        # Clear the input question
+        st.session_state.input = ""
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
