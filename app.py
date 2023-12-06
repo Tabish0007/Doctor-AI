@@ -81,8 +81,8 @@ with st.form(key='my_form'):
                 border: 1px solid #dddddd;
                 font-size: 16px;
                 height:300%;
-                width: 400%;
-                box-sizing: border-box;
+                width: 200%;
+                
             }
         </style>
         """,
