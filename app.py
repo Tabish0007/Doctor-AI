@@ -74,7 +74,7 @@ with st.form(key='my_form'):
         unsafe_allow_html=True
     )
 
-    submit = s.form_submit_button("Submit")
+    submit = st.form_submit_button("Submit")
 
 
 
