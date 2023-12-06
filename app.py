@@ -50,6 +50,8 @@ if 'flowmessages' not in st.session_state:
 
 # Streamlit UI
 with st.form(key='my_form'):
+    
+    input_question = st.text_input("Type here.", key="input")
     st.markdown(
         """
         <style>
@@ -68,7 +70,6 @@ with st.form(key='my_form'):
         </style>
         """
     )
-    input_question = st.text_input("Type here.", key="input")
 
     submit = st.form_submit_button("Submit")
 
