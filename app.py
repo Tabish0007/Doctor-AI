@@ -69,23 +69,18 @@ with st.form(key='my_form'):
         unsafe_allow_html=True
     )
 
-    input_question_key = "input_question"
-    input_question_placeholder = st.empty()
-    input_question = input_question_placeholder.text_input("Type here.", key=input_question_key)
+    input_question = st.text_input("Type here.", key="input")
 
     submit = st.form_submit_button("Submit")
 
-# If the "Submit" button is clicked
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         response = get_chatmodel_response(input_question)
 
     if response is not None:
-        # Display the response
         st.write(response)
-
-        # Clear the input question using query parameters
-        st.experimental_set_query_params(**{input_question_key: ""})
+        # Clear the input field after submitting
+        st.session_state.input = ""
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
