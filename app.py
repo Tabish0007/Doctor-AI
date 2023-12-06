@@ -80,7 +80,7 @@ with st.form(key='my_form'):
                 box-shadow: 2px 2px 5px #888888;
                 border: 1px solid #dddddd;
                 font-size: 16px;
-                width: 650px;
+                width: 600px;
                 height: 100px;
                 /* Add any additional styling here */
             }
