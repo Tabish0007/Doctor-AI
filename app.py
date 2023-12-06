@@ -30,21 +30,6 @@ def get_chatmodel_response(question):
 
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
-# # Set page background
-# st.markdown(
-#     """
-#     <style>
-#         body {
-#             background-color: #f0f0f0;  /* Set your desired background color */
-#         }
-#         .stTextInput, .stButton {
-#             border-radius: 50px;  /* Add border-radius for a nicer input bar */
-#             padding: 50px;  /* Adjust padding for better spacing */
-#         }
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
 
 
 
@@ -65,7 +50,7 @@ if 'flowmessages' not in st.session_state:
 
 # Streamlit UI
 with st.form(key='my_form'):
-    input_question = st.text_input("Type here.", key="input")
+    input_question = st.text_input("Type here.", key="input", class_="stTextInput")
 
     # Apply custom HTML and CSS for styling
     st.markdown(
@@ -74,30 +59,27 @@ with st.form(key='my_form'):
             .stTextInput {
                 border: none;
                 background-color: transparent;
-                border-radius: 0;
+                border-radius: 15px;
                 padding: 12px;
                 margin-top: 10px;
                 margin-bottom: 10px;
                 box-shadow: 2px 2px 5px #888888;
                 font-size: 16px;
-                width: 600px;
-                height: 100px;
+                width: 100%;  /* Make the text input full width */
+                box-sizing: border-box;  /* Ensure padding is included in width */
                 /* Add any additional styling here */
             }
-            
         </style>
         """,
         unsafe_allow_html=True
     )
-
-    
 
     submit = st.form_submit_button("Submit")
 
 
 
 
-# If the "Ask" button is clicked
+# If the "Submit" button is clicked
 if submit:
 
     
