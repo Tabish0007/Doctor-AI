@@ -49,7 +49,7 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-with st.form(key='my_form'):
+with st.form(key='my_form',clear_on_submit=True):
     st.markdown(
         """
         <style>
