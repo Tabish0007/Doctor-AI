@@ -50,29 +50,7 @@ if 'flowmessages' not in st.session_state:
 
 # Streamlit UI
 with st.form(key='my_form'):
-    input_question = st.text_input("Type here.", key="input", class_="stTextInput")
-
-    # Apply custom HTML and CSS for styling
-    st.markdown(
-        """
-        <style>
-            .stTextInput {
-                border: none;
-                background-color: transparent;
-                border-radius: 15px;
-                padding: 12px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                box-shadow: 2px 2px 5px #888888;
-                font-size: 16px;
-                width: 100%;  /* Make the text input full width */
-                box-sizing: border-box;  /* Ensure padding is included in width */
-                /* Add any additional styling here */
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    input_question = st.text_input("Type here.", key="input", style="border: none; background-color: transparent; border-radius: 15px; padding: 12px; margin-top: 10px; margin-bottom: 10px; box-shadow: 2px 2px 5px #888888; font-size: 16px; width: 100%; box-sizing: border-box;")
 
     submit = st.form_submit_button("Submit")
 
