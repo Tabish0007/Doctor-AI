@@ -71,23 +71,18 @@ with st.form(key='my_form'):
     st.markdown(
         """
         <style>
-            /* Add any additional styling here */
-             .stTextInput {
+            .stTextInput {
                 border-radius: 15px;
                 padding: 12px;
                 margin-top: 10px;
                 margin-bottom: 10px;
                 box-shadow: 2px 2px 5px #888888;
-                border: 1px solid #dddddd;
                 font-size: 16px;
                 width: 600px;
                 height: 100px;
                 /* Add any additional styling here */
             }
             
-        </style>
-                
-            }
         </style>
         """,
         unsafe_allow_html=True
