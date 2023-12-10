@@ -40,16 +40,11 @@ load_dotenv()
 import os
 
 # ChatOpenAI class
-chat = ChatOpenAI(temperature=0.1)
-
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
+chat = ChatOpenAI(temperature=0.5)
 
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
-        SystemMessage(content="""You are Doctor AI. an AI Doctor assistant.\
+        SystemMessage(content="""You are a AI Doctor assistant and Your name is Doctor AI.\
             Sailesh developed you on December 6, 2023.
             
             You will perform the following tasks:
@@ -93,8 +88,7 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-# Form for user input
-with st.form(key='my_form', clear_on_submit=True):
+with st.form(key='my_form',clear_on_submit=True):
     st.markdown(
         """
         <style>
@@ -114,29 +108,27 @@ with st.form(key='my_form', clear_on_submit=True):
         unsafe_allow_html=True
     )
 
-    input_question = st.text_input("Type your question:", key="input", class="stTextInput")
-    submit = st.form_submit_button("Ask Doctor AI")
+    input_question = st.text_input("Type here.", key="input")
 
-    # If the "Submit" button is clicked
-    if submit:
-        # Display loading message while processing
-        with st.spinner("Analyzing..."):
-            # Display user input in chat message container
-            with st.chat_message("user"):
-                st.markdown(input_question)
+    submit = st.form_submit_button("ASk Doctor AI")
 
-            # Get AI response
-            response = get_chatmodel_response(input_question)
 
-            # Display assistant response in chat message container
-            with st.chat_message("assistant"):
-                st.markdown(response)
 
-            # Add both user input and assistant response to chat history
-            st.session_state.messages.append({"role": "user", "content": input_question})
-            st.session_state.messages.append({"role": "assistant", "content": response})
 
-# Display chat messages from history
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+# If the "Submit" button is clicked
+if submit:
+
+    
+    # Display loading message while processing
+    with st.spinner("Analyzing..."):
+        st.header(":blue[You]", divider=True)
+        st.caption(input_question)
+        
+        st.header("Doctor AI", divider=True)
+        response = get_chatmodel_response(input_question)
+
+    if response is not None:
+       
+        st.write(response)
+    else:
+        st.subheader("Error: Unable to get response. Please try again later.")
