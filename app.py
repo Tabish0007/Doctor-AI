@@ -93,7 +93,8 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-with st.form(key='my_form',clear_on_submit=True):
+# Form for user input
+with st.form(key='my_form', clear_on_submit=True):
     st.markdown(
         """
         <style>
@@ -113,33 +114,27 @@ with st.form(key='my_form',clear_on_submit=True):
         unsafe_allow_html=True
     )
 
-    input_question = st.text_input("Type here.", key="input")
-
+    input_question = st.text_input("Type your question:", key="input", class="stTextInput")
     submit = st.form_submit_button("Ask Doctor AI")
 
+    # If the "Submit" button is clicked
+    if submit:
+        # Display loading message while processing
+        with st.spinner("Analyzing..."):
+            # Display user input in chat message container
+            with st.chat_message("user"):
+                st.markdown(input_question)
 
+            # Get AI response
+            response = get_chatmodel_response(input_question)
 
+            # Display assistant response in chat message container
+            with st.chat_message("assistant"):
+                st.markdown(response)
 
-# If the "Submit" button is clicked
-if submit:
-    # Accept user input
-    input_question = st.text_input("Type your question:")
-    
-    # Display user input in chat message container
-    with st.chat_message("user"):
-        st.markdown(input_question)
-    
-    # Get AI response
-    response = get_chatmodel_response(input_question)
-
-    # Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        st.markdown(response)
-
-
-    # Add both user input and assistant response to chat history
-    st.session_state.messages.append({"role": "user", "content": input_question})
-    st.session_state.messages.append({"role": "assistant", "content": response.content})
+            # Add both user input and assistant response to chat history
+            st.session_state.messages.append({"role": "user", "content": input_question})
+            st.session_state.messages.append({"role": "assistant", "content": response})
 
 # Display chat messages from history
 for message in st.session_state.messages:
