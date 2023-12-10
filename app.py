@@ -50,7 +50,7 @@ if 'flowmessages' not in st.session_state:
         You will perform the following tasks:
         
         1 - First, tell the user who you are,\
-        and get some basic details from the user like\ 
+        and get some basic details one by one from the user like\ 
         Name, Age, Gender.\
         
         Store these details.
@@ -59,7 +59,7 @@ if 'flowmessages' not in st.session_state:
         2 - A user will give an input of the symptoms and what he/she is suffering from or what health problem he/she have.\
         based on the input ask the medical history.\
         
-        Get Medical Histories like:
+        Get Medical Histories one by one like:
          - existing medical conditions\
          - currently taking any medications?\.
          - any surgeries or hospitalizations in the past?\
