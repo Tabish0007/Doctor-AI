@@ -3,6 +3,7 @@ import time
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from langchain.chat_models import ChatOpenAI
 
+
 def get_chatmodel_response(question):
     # Retry logic
     max_retries = 3
@@ -30,6 +31,8 @@ def get_chatmodel_response(question):
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
 
+
+
 st.header("Hello, I am Doctor AI. How can I help you?")
 
 from dotenv import load_dotenv
@@ -37,7 +40,7 @@ load_dotenv()
 import os
 
 # ChatOpenAI class
-chat = ChatOpenAI(temperature=0.5)
+chat = ChatOpenAI(temperature=0.1)
 
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
@@ -74,18 +77,18 @@ if 'flowmessages' not in st.session_state:
             5 - The user should be able to understand it easily.
             
             6 - Prescribe Medications:
-                - Write the correct Medicine name below again, and Highlight the medicine name.
-            
+            	- Write the correct Medicine name below again, and Highlight the medicine name.
             7 - In the end, Express Empathy and Care, and you should also ask the user to consult a real doctor.
             
             8 - If the user input is different from a body or health issue or any other medical issues,\
             gently guide the user to provide appropriate health-related input,\
             because you are a Doctor AI.
             """)
+
     ]
 
 # Streamlit UI
-with st.form(key='my_form', clear_on_submit=True):
+with st.form(key='my_form',clear_on_submit=True):
     st.markdown(
         """
         <style>
@@ -109,11 +112,23 @@ with st.form(key='my_form', clear_on_submit=True):
 
     submit = st.form_submit_button("Submit")
 
-# Display conversation history
-for message in st.session_state['flowmessages'][1:]:
-    if isinstance(message, HumanMessage):
-        st.header(":blue[You]", divider=True)
-    elif isinstance(message, AIMessage):
-        st.header("Doctor AI", divider=True)
+
+
+
+# If the "Submit" button is clicked
+if submit:
+
     
-    st.caption(message.content)
+    # Display loading message while processing
+    with st.spinner("Analyzing..."):
+        st.header(":blue[You]", divider=True)
+        st.caption(input_question)
+        
+        st.header("Doctor AI", divider=True)
+        response = get_chatmodel_response(input_question)
+
+    if response is not None:
+       
+        st.write(response)
+    else:
+        st.subheader("Error: Unable to get response. Please try again later.")
