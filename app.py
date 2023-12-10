@@ -127,11 +127,15 @@ if submit:
         response = get_chatmodel_response(input_question)
 
     if response is not None:
+        # Display user input in chat message container
+        st.chat_message(":blue[You]: " + input_question)
+        
         # Display assistant response in chat message container
-        with st.chat_message("assistant"):
-            st.chat_message(response)
-
-        # Add assistant response to chat history
+        st.chat_message("assistant: " + response)
+        
+        # Add both user input and assistant response to chat history
+        st.session_state.messages.append({"role": "user", "content": input_question})
         st.session_state.messages.append({"role": "assistant", "content": response})
+
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
