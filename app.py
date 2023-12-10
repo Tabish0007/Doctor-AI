@@ -25,7 +25,7 @@ def get_chatmodel_response(question):
                 break
 
     print("Exceeded the maximum number of retries. Please try again later.")
-    return None
+    return "Error: Unable to get response. Please try again later."
 
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
@@ -113,18 +113,16 @@ with st.form(key='my_form', clear_on_submit=True):
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
-        st.header(":blue[You]", divider=True)
-        st.caption(input_question)
-        
-        st.header("Doctor AI", divider=True)
-        response = get_chatmodel_response(input_question)
-
-        if response is not None:
-            # Display user input and AI response
-            st.header(":blue[You]", divider=True)
-            st.caption(input_question)
+        # Display entire conversation history
+        for message in st.session_state['flowmessages']:
+            if isinstance(message, HumanMessage):
+                st.header(":blue[You]", divider=True)
+            elif isinstance(message, AIMessage):
+                st.header("Doctor AI", divider=True)
             
+            st.caption(message.content)
+
+        # Handle error case
+        if st.session_state['flowmessages'][-1].startswith("Error"):
             st.header("Doctor AI", divider=True)
-            st.caption(response)
-        else:
-            st.subheader("Error: Unable to get response. Please try again later.")
+            st.caption(st.session_state['flowmessages'][-1])
