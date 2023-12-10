@@ -42,6 +42,11 @@ import os
 # ChatOpenAI class
 chat = ChatOpenAI(temperature=0.1)
 
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
         SystemMessage(content="""You are Doctor AI. an AI Doctor assistant.\
@@ -110,30 +115,32 @@ with st.form(key='my_form',clear_on_submit=True):
 
     input_question = st.text_input("Type here.", key="input")
 
-    submit = st.form_submit_button("Submit")
+    submit = st.form_submit_button("Ask Doctor AI")
 
 
 
 
 # If the "Submit" button is clicked
-if submit:
-    # Display loading message while processing
-    with st.spinner("Analyzing..."):
-        st.chat_message(":blue[You]: " + input_question)
-        
-        st.header("Doctor AI", divider=True)
-        response = get_chatmodel_response(input_question)
+if st.button("Ask Doctor AI"):
+    # Accept user input
+    input_question = st.text_input("Type your question:")
+    
+    # Display user input in chat message container
+    with st.chat_message("user"):
+        st.markdown(input_question)
+    
+    # Get AI response
+    response = get_chatmodel_response(input_question)
 
-    if response is not None:
-        # Initialize messages in session state if not already initialized
-        if 'messages' not in st.session_state:
-            st.session_state['messages'] = []
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        st.markdown(response.content)
 
-        # Display assistant response in chat message container
-        st.chat_message("assistant: " + response)
+    # Add both user input and assistant response to chat history
+    st.session_state.messages.append({"role": "user", "content": input_question})
+    st.session_state.messages.append({"role": "assistant", "content": response.content})
 
-        # Add both user input and assistant response to chat history
-        st.session_state.messages.append({"role": "user", "content": input_question})
-        st.session_state.messages.append({"role": "assistant", "content": response})
-    else:
-        st.subheader("Error: Unable to get response. Please try again later.")
+# Display chat messages from history
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
