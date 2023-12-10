@@ -120,22 +120,21 @@ if submit:
 
     # Display loading message while processing
     with st.spinner("Analyzing..."):
-        st.header(":blue[You]", divider=True)
-        st.caption(input_question)
+        st.chat_message(":blue[You]: " + input_question)
         
         st.header("Doctor AI", divider=True)
         response = get_chatmodel_response(input_question)
 
     if response is not None:
-        # Display user input in chat message container
-        st.chat_message(":blue[You]: " + input_question)
-        
+        # Initialize messages in session state if not already initialized
+        if 'messages' not in st.session_state:
+            st.session_state['messages'] = []
+
         # Display assistant response in chat message container
         st.chat_message("assistant: " + response)
-        
+
         # Add both user input and assistant response to chat history
         st.session_state.messages.append({"role": "user", "content": input_question})
         st.session_state.messages.append({"role": "assistant", "content": response})
-
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
