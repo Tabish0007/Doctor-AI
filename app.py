@@ -110,7 +110,7 @@ with st.form(key='my_form', clear_on_submit=True):
     submit = st.form_submit_button("Submit")
 
 # Display conversation history
-for message in st.session_state['flowmessages']:
+for message in st.session_state['flowmessages'][1:]:
     if isinstance(message, HumanMessage):
         st.header(":blue[You]", divider=True)
     elif isinstance(message, AIMessage):
