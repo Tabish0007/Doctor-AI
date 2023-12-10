@@ -121,7 +121,7 @@ with st.form(key='my_form',clear_on_submit=True):
 
 
 # If the "Submit" button is clicked
-if st.button("Ask Doctor AI"):
+if submit:
     # Accept user input
     input_question = st.text_input("Type your question:")
     
@@ -134,7 +134,8 @@ if st.button("Ask Doctor AI"):
 
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        st.markdown(response.content)
+        st.markdown(response)
+
 
     # Add both user input and assistant response to chat history
     st.session_state.messages.append({"role": "user", "content": input_question})
