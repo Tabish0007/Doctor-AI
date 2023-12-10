@@ -117,7 +117,6 @@ with st.form(key='my_form',clear_on_submit=True):
 
 # If the "Submit" button is clicked
 if submit:
-
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         st.chat_message(":blue[You]: " + input_question)
