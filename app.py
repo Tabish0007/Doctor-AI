@@ -42,7 +42,7 @@ chat = ChatOpenAI(temperature=0.5)
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
         SystemMessage(content="""You are a AI Doctor assistant and Your name is Doctor AI.\
-            Sailesh developed you on December 6, 2023.
+            you were developed by Sailesh on December 6, 2023.
             
             You will perform the following tasks:
             
@@ -123,6 +123,6 @@ if submit:
             st.caption(message.content)
 
         # Handle error case
-        if st.session_state['flowmessages'][-1].startswith("Error"):
+        if st.session_state['flowmessages'][-1].content.startswith("Error"):
             st.header("Doctor AI", divider=True)
-            st.caption(st.session_state['flowmessages'][-1])
+            st.caption(st.session_state['flowmessages'][-1].content)
