@@ -44,7 +44,7 @@ chat = ChatOpenAI(temperature=0.1)
 
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
-        SystemMessage(content="""You are a AI Doctor assistant and Your name is Doctor AI.\
+        SystemMessage(content="""You are Doctor AI. an AI Doctor assistant.\
             Sailesh developed you on December 6, 2023.
             
             You will perform the following tasks:
@@ -118,7 +118,6 @@ with st.form(key='my_form',clear_on_submit=True):
 # If the "Submit" button is clicked
 if submit:
 
-    
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         st.header(":blue[You]", divider=True)
@@ -128,7 +127,11 @@ if submit:
         response = get_chatmodel_response(input_question)
 
     if response is not None:
-       
-        st.write(response)
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            st.chat_message(response)
+
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": response})
     else:
         st.subheader("Error: Unable to get response. Please try again later.")
