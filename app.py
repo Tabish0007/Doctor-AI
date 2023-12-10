@@ -40,7 +40,7 @@ load_dotenv()
 import os
 
 # ChatOpenAI class
-chat = ChatOpenAI(temperature=0.5)
+chat = ChatOpenAI(temperature=0.1)
 
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
@@ -51,10 +51,10 @@ if 'flowmessages' not in st.session_state:
             
             1 - First, tell the user who you are,\
             and get some basic details from the user like\ 
-            get one by one,\
-                1. Name,\
-                2. Age, \
-                3. Gender.\
+            get one by one:
+                1. Name,
+                2. Age, 
+                3. Gender.
             
             Store these details.
             
