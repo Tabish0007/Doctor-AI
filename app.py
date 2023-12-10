@@ -109,15 +109,11 @@ with st.form(key='my_form', clear_on_submit=True):
 
     submit = st.form_submit_button("Submit")
 
-# If the "Submit" button is clicked
-if submit:
-    # Display loading message while processing
-    with st.spinner("Analyzing..."):
-        # Display entire conversation history
-        for message in st.session_state['flowmessages']:
-            if isinstance(message, HumanMessage):
-                st.header(":blue[You]", divider=True)
-            elif isinstance(message, AIMessage):
-                st.header("Doctor AI", divider=True)
-            
-            st.caption(message.content)
+# Display conversation history
+for message in st.session_state['flowmessages']:
+    if isinstance(message, HumanMessage):
+        st.header(":blue[You]", divider=True)
+    elif isinstance(message, AIMessage):
+        st.header("Doctor AI", divider=True)
+    
+    st.caption(message.content)
