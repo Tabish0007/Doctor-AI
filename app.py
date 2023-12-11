@@ -86,37 +86,75 @@ if 'flowmessages' not in st.session_state:
 
     ]
 
-# Display conversation history in sidebar
-with st.sidebar:
-    st.title("Chat History")
-    for message in reversed(st.session_state["flowmessages"]):
-        if isinstance(message, AIMessage):
-            st.header("Doctor AI", divider=True)
-            st.write(message.content)
-        elif isinstance(message, HumanMessage):
-            st.header(":blue[You]", divider=True)
-            st.write(message.content)
 
-# Main container for input form
-with st.container():
-    # Input form at the bottom
-    with st.form(key="my_form", clear_on_submit=True):
-        input_question = st.text_input("Type here.")
-        submit = st.form_submit_button("Ask Doctor AI")
 
-    # If the "Submit" button is clicked
-    if submit:
+# Streamlit UI
+with st.form(key='my_form', clear_on_submit=True):
+    st.markdown(
+        """
+        <style>
+            .stTextInput {
+                border-radius: 15px;
+                padding: 12px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                box-shadow: 2px 2px 5px #888888;
+                border: 1px solid #dddddd;
+                font-size: 16px;
+                width: 100%;
+                height: 100px;
+            }
+            .blue-text {
+                color: blue;
+            }
+            .black-text {
+                color: black;
+            }
+            .separator {
+                border-top: 2px solid #888888;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    input_question = st.text_input("Type here.", key="input")
+    submit = st.form_submit_button("Ask Doctor AI")
+
+
+
+
+# Add a "Clear Chat" button next to the "Submit" button
+clear_chat_button = st.button("Clear Chat", key="clear_button", help="Clear Chat")
+
+# If the "Clear Chat" button is clicked
+if clear_chat_button:
+    # Clear the entire session and chat
+    st.session_state['flowmessages'] = []
+    
+# If the "Submit" button is clicked
+if submit:
+    # Display loading message while processing
+    with st.spinner("Analyzing..."):
         # Get Doctor AI's response
         response = get_chatmodel_response(input_question)
 
         if response is not None:
-            # Display conversation history in main container
-            for message in reversed(st.session_state["flowmessages"]):
+            # Display conversation history
+            for message in st.session_state['flowmessages']:
                 if isinstance(message, AIMessage):
                     st.header("Doctor AI", divider=True)
                     st.write(message.content)
                 elif isinstance(message, HumanMessage):
                     st.header(":blue[You]", divider=True)
                     st.write(message.content)
+
+
+                    
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
+
+
+            
