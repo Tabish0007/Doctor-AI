@@ -86,6 +86,14 @@ if 'flowmessages' not in st.session_state:
 
     ]
 
+# Add a "Clear Chat" button next to the "Submit" button
+clear_chat_button = st.button("Clear Chat")
+
+# If the "Clear Chat" button is clicked
+if clear_chat_button:
+    # Clear the entire session and chat
+    st.session_state['flowmessages'] = []
+
 # Streamlit UI
 with st.form(key='my_form', clear_on_submit=True):
     st.markdown(
@@ -121,16 +129,6 @@ with st.form(key='my_form', clear_on_submit=True):
     input_question = st.text_input("Type here.", key="input")
     submit = st.form_submit_button("Ask Doctor AI")
 
-# Create the "Clear Chat" button at the right end of the webpage
-clear_chat_button = st.button("Clear Chat", key="clear_button", help="Clear Chat")
-
-# Use st.markdown to add empty space to push the button to the right end
-st.markdown("<div style='margin-left: auto;'></div>", unsafe_allow_html=True)
-
-# If the "Clear Chat" button is clicked
-if clear_chat_button:
-    # Clear the entire session and chat
-    st.session_state['flowmessages'] = []
 
 # If the "Submit" button is clicked
 if submit:
