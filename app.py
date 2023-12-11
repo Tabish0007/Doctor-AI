@@ -129,7 +129,7 @@ if submit:
         response = get_chatmodel_response(input_question)
 
         if response is not None:
-            # Display conversation turn by turn starting from the second message
+            # Display conversation turn by turn
             for i in range(1, len(st.session_state['flowmessages']), 2):
                 st.write(f"You: {st.session_state['flowmessages'][i-1].content}")
                 st.write(f"Doctor AI: {st.session_state['flowmessages'][i].content}")
