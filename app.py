@@ -88,7 +88,7 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-with st.form(key='my_form', clear_on_submit=True):
+with st.form(key='my_form',clear_on_submit=True):
     st.markdown(
         """
         <style>
@@ -100,8 +100,8 @@ with st.form(key='my_form', clear_on_submit=True):
                 box-shadow: 2px 2px 5px #888888;
                 border: 1px solid #dddddd;
                 font-size: 16px;
-                width: 100%;
-                height: 100px;
+                width: 100%;  /* Make the input box full width */
+                height: 100px;  /* Set the height of the input box */
             }
         </style>
         """,
@@ -112,20 +112,30 @@ with st.form(key='my_form', clear_on_submit=True):
 
     submit = st.form_submit_button("Ask Doctor AI")
 
+
+
+
 # If the "Submit" button is clicked
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
+        # Add user input to conversation
+        st.session_state['flowmessages'].append(HumanMessage(content=input_question))
         st.header(":blue[You]", divider=True)
         st.caption(input_question)
 
+        # Get Doctor AI's response
         st.header("Doctor AI", divider=True)
         response = get_chatmodel_response(input_question)
 
         if response is not None:
-            # Display conversation history in a scrollable text area
-            st.text_area("Conversation History", value='\n'.join([msg.content for msg in st.session_state['flowmessages']]), height=400)
-            st.header("Doctor AI", divider=True)
-            st.write(response)
+            # Display conversation turn by turn starting from the second message
+            for i in range(1, len(st.session_state['flowmessages']), 2):
+                st.write(f"You: {st.session_state['flowmessages'][i-1].content}")
+                st.write(f"Doctor AI: {st.session_state['flowmessages'][i].content}")
+
+            # Display Doctor AI's current response
+            st.write(f"You: {input_question}")
+            st.write(f"Doctor AI: {response}")
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
