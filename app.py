@@ -117,25 +117,18 @@ with st.form(key='my_form',clear_on_submit=True):
 
 # If the "Submit" button is clicked
 if submit:
+
+    
     # Display loading message while processing
     with st.spinner("Analyzing..."):
-        # Add user input to conversation
-        st.session_state['flowmessages'].append(HumanMessage(content=input_question))
         st.header(":blue[You]", divider=True)
         st.caption(input_question)
-
-        # Get Doctor AI's response
+        
         st.header("Doctor AI", divider=True)
         response = get_chatmodel_response(input_question)
 
-        if response is not None:
-            # Display conversation turn by turn
-            for i in range(1, len(st.session_state['flowmessages']), 2):
-                st.write(f"You: {st.session_state['flowmessages'][i-1].content}")
-                st.write(f"Doctor AI: {st.session_state['flowmessages'][i].content}")
-
-            # Display Doctor AI's current response
-            st.write(f"You: {input_question}")
-            st.write(f"Doctor AI: {response}")
-        else:
-            st.subheader("Error: Unable to get response. Please try again later.")
+    if response is not None:
+       
+        st.write(response)
+    else:
+        st.subheader("Error: Unable to get response. Please try again later.")
