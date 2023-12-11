@@ -121,27 +121,16 @@ with st.form(key='my_form', clear_on_submit=True):
     input_question = st.text_input("Type here.", key="input")
     submit = st.form_submit_button("Ask Doctor AI")
 
-# Create the "Clear Chat" button
-clear_chat_button = st.button("Clear Chat")
-
-# Add custom CSS to move the button to the right end
-st.markdown(
-    """
-    <style>
-        .css-1vrmu7e.e1aynhnn {
-            display: flex;
-            justify-content: flex-end;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# Create the "Clear Chat" button at the right end of the webpage
+clear_chat_button = st.button("Clear Chat", key="clear_button", help="Clear Chat")
 
 # If the "Clear Chat" button is clicked
 if clear_chat_button:
     # Clear the entire session and chat
     st.session_state['flowmessages'] = []
 
+# Additional space to push the button to the right
+st.markdown("<div style='margin-top:50px;'></div>", unsafe_allow_html=True)
 
 
 # If the "Submit" button is clicked
