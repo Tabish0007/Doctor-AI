@@ -137,7 +137,7 @@ if submit:
                     st.write(f"You: {message.content}")
 
             # Display Doctor AI's current response
-            st.write(f"You: {input_question}")
-            st.write(f"Doctor AI: {response}")
+            # st.write(f"You: {input_question}")
+            # st.write(f"Doctor AI: {response}")
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
