@@ -31,7 +31,8 @@ def get_chatmodel_response(question):
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
 
-
+st.header(":blue[You]", divider=True)
+st.header("Doctor AI", divider=True)
 
 st.header("Hello, I am Doctor AI. How can I help you?")
 
@@ -131,16 +132,21 @@ if submit:
         response = get_chatmodel_response(input_question)
 
         if response is not None:
-            # Display entire conversation
+            # Display conversation history
             for message in st.session_state['flowmessages']:
                 if isinstance(message, AIMessage):
-                    st.markdown('<div class="black-text separator">Doctor AI:</div>', unsafe_allow_html=True)
+                    st.header("Doctor AI", divider=True)
                     st.write(message.content)
                 elif isinstance(message, HumanMessage):
-                    st.markdown('<div class="blue-text separator">You:</div>', unsafe_allow_html=True)
+                    st.header(":blue[You]", divider=True)
                     st.write(message.content)
 
+            # # Display user input and AI response
+            # st.header(":blue[You]", divider=True)
+            # st.write(input_question)
             
+            # st.header("Doctor AI", divider=True)
+            # st.write(response)
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
             
