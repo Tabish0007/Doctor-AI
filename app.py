@@ -121,6 +121,14 @@ with st.form(key='my_form', clear_on_submit=True):
     input_question = st.text_input("Type here.", key="input")
     submit = st.form_submit_button("Ask Doctor AI")
 
+    # Add a "Clear Chat" button next to the "Submit" button
+    clear_chat_button = st.button("Clear Chat")
+
+    # If the "Clear Chat" button is clicked
+    if clear_chat_button:
+        # Clear the entire session and chat
+        st.session_state['flowmessages'] = []
+
 
 
 
