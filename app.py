@@ -121,6 +121,18 @@ with st.form(key='my_form', clear_on_submit=True):
     input_question = st.text_input("Type here.", key="input")
     submit = st.form_submit_button("Ask Doctor AI")
 
+# Add custom CSS to move the button to the right
+st.markdown(
+    """
+    <style>
+        .css-1vrmu7e.e1aynhnn button {
+            float: right;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Use st.empty() to create an empty space to the right of the form
 placeholder = st.empty()
 
