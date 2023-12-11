@@ -31,8 +31,6 @@ def get_chatmodel_response(question):
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
 
-st.header(":blue[You]", divider=True)
-st.header("Doctor AI", divider=True)
 
 st.header("Hello, I am Doctor AI. How can I help you?")
 
@@ -124,6 +122,14 @@ with st.form(key='my_form', clear_on_submit=True):
 
     submit = st.form_submit_button("Ask Doctor AI")
 
+    # Add a "Clear Chat" button
+    clear_chat_button = st.button("Clear Chat")
+
+# If the "Clear Chat" button is clicked
+if clear_chat_button:
+    # Clear the entire session and chat
+    st.session_state['flowmessages'] = []
+
 # If the "Submit" button is clicked
 if submit:
     # Display loading message while processing
@@ -141,12 +147,8 @@ if submit:
                     st.header(":blue[You]", divider=True)
                     st.write(message.content)
 
-            # # Display user input and AI response
-            # st.header(":blue[You]", divider=True)
-            # st.write(input_question)
-            
-            # st.header("Doctor AI", divider=True)
-            # st.write(response)
+
+                    
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
             
