@@ -124,14 +124,13 @@ with st.form(key='my_form', clear_on_submit=True):
 # Create the "Clear Chat" button at the right end of the webpage
 clear_chat_button = st.button("Clear Chat", key="clear_button", help="Clear Chat")
 
+# Use st.markdown to add empty space to push the button to the right end
+st.markdown("<div style='margin-left: auto;'></div>", unsafe_allow_html=True)
+
 # If the "Clear Chat" button is clicked
 if clear_chat_button:
     # Clear the entire session and chat
     st.session_state['flowmessages'] = []
-
-# Additional space to push the button to the right
-st.markdown("<div style='margin-top:50px;'></div>", unsafe_allow_html=True)
-
 
 # If the "Submit" button is clicked
 if submit:
