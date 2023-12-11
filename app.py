@@ -86,7 +86,10 @@ if 'flowmessages' not in st.session_state:
 
     ]
 with st.container():
-    # Display conversation history at the top
+    # Create an empty space at the top
+    top_space = st.empty()
+
+    # Display conversation history below the empty space
     for message in reversed(st.session_state["flowmessages"]):
         if isinstance(message, AIMessage):
             st.header("Doctor AI", divider=True)
@@ -94,9 +97,6 @@ with st.container():
         elif isinstance(message, HumanMessage):
             st.header(":blue[You]", divider=True)
             st.write(message.content)
-
-    # Create an empty space at the bottom
-    bottom_space = st.empty()
 
     # Input box and form at the bottom
     with st.form(key="my_form", clear_on_submit=True):
@@ -118,6 +118,6 @@ with st.container():
                     st.header(":blue[You]", divider=True)
                     st.write(message.content)
             # Scroll to the bottom to show the latest input
-            bottom_space.markdown("<br>", unsafe_allow_html=True)
+            top_space.markdown("<br>", unsafe_allow_html=True)
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
