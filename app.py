@@ -29,7 +29,7 @@ def get_chatmodel_response(question):
     return None
 
 # Streamlit app setup
-st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="wide", initial_sidebar_state="collapsed")
 
 
 st.header("Hello, I am Doctor AI. How can I help you?")
@@ -39,7 +39,7 @@ load_dotenv()
 import os
 
 # ChatOpenAI class
-chat = ChatOpenAI(temperature=0.1)
+chat = ChatOpenAI(temperature=0)
 
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
@@ -74,6 +74,11 @@ Perform the following tasks:
 **Step 6: Prescription**
 - Prescribe medications by writing the correct medicine names.
 - Highlight the medicine names for emphasis.
+- Give the medicine names in this order:\
+    1. Medicine name 1
+    2. Medicine name 2
+    3. Medicine name 3
+    and go on if you have more.
 
 **Step 7: Express Empathy and Caution**
 - Express empathy and care towards the user.
