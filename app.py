@@ -88,7 +88,7 @@ if 'flowmessages' not in st.session_state:
     ]
 
 # Streamlit UI
-with st.form(key='my_form',clear_on_submit=True):
+with st.form(key='my_form', clear_on_submit=True):
     st.markdown(
         """
         <style>
@@ -100,8 +100,19 @@ with st.form(key='my_form',clear_on_submit=True):
                 box-shadow: 2px 2px 5px #888888;
                 border: 1px solid #dddddd;
                 font-size: 16px;
-                width: 100%;  /* Make the input box full width */
-                height: 100px;  /* Set the height of the input box */
+                width: 100%;
+                height: 100px;
+            }
+            .blue-text {
+                color: blue;
+            }
+            .black-text {
+                color: black;
+            }
+            .separator {
+                border-top: 2px solid #888888;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
         </style>
         """,
@@ -112,32 +123,33 @@ with st.form(key='my_form',clear_on_submit=True):
 
     submit = st.form_submit_button("Ask Doctor AI")
 
-
-
-
 # If the "Submit" button is clicked
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
         # Add user input to conversation
         st.session_state['flowmessages'].append(HumanMessage(content=input_question))
-        st.header(":blue[You]", divider=True)
-        st.caption(input_question)
+        st.markdown('<div class="blue-text">You:</div>', unsafe_allow_html=True)
+        st.write(input_question)
 
         # Get Doctor AI's response
-        st.header("Doctor AI", divider=True)
+        st.markdown('<div class="black-text separator">Doctor AI:</div>', unsafe_allow_html=True)
         response = get_chatmodel_response(input_question)
 
         if response is not None:
             # Display entire conversation
             for message in st.session_state['flowmessages']:
                 if isinstance(message, AIMessage):
-                    st.write(f"Doctor AI: {message.content}")
+                    st.markdown('<div class="black-text separator">Doctor AI:</div>', unsafe_allow_html=True)
+                    st.write(message.content)
                 elif isinstance(message, HumanMessage):
-                    st.write(f"You: {message.content}")
+                    st.markdown('<div class="blue-text separator">You:</div>', unsafe_allow_html=True)
+                    st.write(message.content)
 
             # Display Doctor AI's current response
-            # st.write(f"You: {input_question}")
-            # st.write(f"Doctor AI: {response}")
+            st.markdown('<div class="blue-text separator">You:</div>', unsafe_allow_html=True)
+            st.write(input_question)
+            st.markdown('<div class="black-text separator">Doctor AI:</div>', unsafe_allow_html=True)
+            st.write(response)
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
