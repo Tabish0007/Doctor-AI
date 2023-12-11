@@ -131,7 +131,7 @@ with st.form(key='my_form', clear_on_submit=True):
 
 
 # Add a "Clear Chat" button next to the "Submit" button
-clear_chat_button = st.button("Clear Chat", key="clear_button", help="Clear Chat")
+clear_chat_button = st.button("Start a New Chat", key="clear_button")
 
 # If the "Clear Chat" button is clicked
 if clear_chat_button:
