@@ -120,41 +120,33 @@ with st.form(key='my_form', clear_on_submit=True):
         unsafe_allow_html=True
     )
 
-    input_question = st.text_input("Type here.", key="input")
-    submit = st.form_submit_button("Ask Doctor AI")
 
+# Chat container for displaying messages
+with st.container():
+    with st.container(width="100%", class_="chat-container"):
+        # Display conversation history
+        for message in reversed(st.session_state['flowmessages']):
+            if isinstance(message, AIMessage):
+                st.container(class_="assistant-message").write(message.content)
+            elif isinstance(message, HumanMessage):
+                st.container(class_="user-message").write(message.content)
 
+# Input box at the bottom
+with st.container(width="100%", class_="input-container"):
+    input_question = st.text_input("Type here:", key="input")
+    submit = st.button("Ask Doctor AI")
 
-
-# Add a "Clear Chat" button next to the "Submit" button
-clear_chat_button = st.button("Clear Chat", key="clear_button", help="Clear Chat")
-
-# If the "Clear Chat" button is clicked
-if clear_chat_button:
-    # Clear the entire session and chat
-    st.session_state['flowmessages'] = []
-    
 # If the "Submit" button is clicked
 if submit:
-    # Display loading message while processing
-    with st.spinner("Analyzing..."):
-        # Get Doctor AI's response
-        response = get_chatmodel_response(input_question)
+    # Get Doctor AI's response
+    response = get_chatmodel_response(input_question)
 
-        if response is not None:
-            # Display conversation history
-            for message in st.session_state['flowmessages']:
-                if isinstance(message, AIMessage):
-                    st.header("Doctor AI", divider=True)
-                    st.write(message.content)
-                elif isinstance(message, HumanMessage):
-                    st.header(":blue[You]", divider=True)
-                    st.write(message.content)
-
-
-                    
-        else:
-            st.subheader("Error: Unable to get response. Please try again later.")
-
-
-            
+    if response is not None:
+        # Display conversation history
+        for message in reversed(st.session_state['flowmessages']):
+            if isinstance(message, AIMessage):
+                st.container(class_="assistant-message").write(message.content)
+            elif isinstance(message, HumanMessage):
+                st.container(class_="user-message").write(message.content)
+    else:
+        st.subheader("Error: Unable to get response. Please try again later.")
