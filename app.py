@@ -140,11 +140,7 @@ if submit:
                     st.markdown('<div class="blue-text separator">You:</div>', unsafe_allow_html=True)
                     st.write(message.content)
 
-            # Display user input and AI response
-            st.markdown('<div class="blue-text separator">You:</div>', unsafe_allow_html=True)
-            st.write("ddd",input_question)
-            st.markdown('<div class="black-text separator">Doctor AI:</div>', unsafe_allow_html=True)
-            st.write("ddd",response)
+            
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
             
