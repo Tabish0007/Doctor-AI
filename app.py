@@ -122,10 +122,11 @@ with st.form(key='my_form', clear_on_submit=True):
 
     submit = st.form_submit_button("Ask Doctor AI")
 
-# Use st.sidebar to create a sidebar and place the "Clear Chat" button there
-with st.sidebar:
-    # Add a "Clear Chat" button
-    clear_chat_button = st.button("Clear Chat")
+# Use st.empty() to create an empty space to the right of the form
+placeholder = st.empty()
+
+# Add a "Clear Chat" button to the right of the form
+clear_chat_button = placeholder.button("Clear Chat")
 
 # If the "Clear Chat" button is clicked
 if clear_chat_button:
