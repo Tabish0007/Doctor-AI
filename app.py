@@ -118,20 +118,18 @@ with st.form(key='my_form', clear_on_submit=True):
         unsafe_allow_html=True
     )
 
-    input_question = st.text_input("Type here.", key="input")
+input_question = st.text_input("Type here.", key="input")
 
+
+# Use st.beta_container() to create a container
+container = st.beta_container()
+
+# Use st.columns() to create two columns within the container
+col1, col2 = container.columns([2, 1])
+
+# Place the form in the first column
+with col1.form(key='my_form', clear_on_submit=True):
     submit = st.form_submit_button("Ask Doctor AI")
-
-# Use st.empty() to create an empty space to the right of the form
-placeholder = st.empty()
-
-# Add a "Clear Chat" button to the right of the form
-clear_chat_button = placeholder.button("Clear Chat")
-
-# If the "Clear Chat" button is clicked
-if clear_chat_button:
-    # Clear the entire session and chat
-    st.session_state['flowmessages'] = []
 
 # If the "Submit" button is clicked
 if submit:
@@ -154,4 +152,13 @@ if submit:
                     
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
+
+
+# Place the "Clear Chat" button in the second column (to the right)
+clear_chat_button = col2.button("Clear Chat")
+
+# If the "Clear Chat" button is clicked
+if clear_chat_button:
+    # Clear the entire session and chat
+    st.session_state['flowmessages'] = []
             
