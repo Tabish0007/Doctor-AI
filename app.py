@@ -127,13 +127,19 @@ with st.form(key='my_form', clear_on_submit=True):
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
-        # Add user input to conversation
-        st.session_state['flowmessages'].append(HumanMessage(content=input_question))
-
         # Get Doctor AI's response
         response = get_chatmodel_response(input_question)
 
         if response is not None:
+            # Display entire conversation
+            for message in st.session_state['flowmessages']:
+                if isinstance(message, AIMessage):
+                    st.markdown('<div class="black-text separator">Doctor AI:</div>', unsafe_allow_html=True)
+                    st.write(message.content)
+                elif isinstance(message, HumanMessage):
+                    st.markdown('<div class="blue-text separator">You:</div>', unsafe_allow_html=True)
+                    st.write(message.content)
+
             # Display user input and AI response
             st.markdown('<div class="blue-text separator">You:</div>', unsafe_allow_html=True)
             st.write(input_question)
