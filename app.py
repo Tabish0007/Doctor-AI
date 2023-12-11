@@ -85,39 +85,39 @@ if 'flowmessages' not in st.session_state:
             """)
 
     ]
+with st.container():
+    # Display conversation history at the top
+    for message in reversed(st.session_state["flowmessages"]):
+        if isinstance(message, AIMessage):
+            st.header("Doctor AI", divider=True)
+            st.write(message.content)
+        elif isinstance(message, HumanMessage):
+            st.header(":blue[You]", divider=True)
+            st.write(message.content)
 
-# Display conversation history at the top
-for message in reversed(st.session_state['flowmessages']):
-    if isinstance(message, AIMessage):
-        st.header("Doctor AI", divider=True)
-        st.write(message.content)
-    elif isinstance(message, HumanMessage):
-        st.header(":blue[You]", divider=True)
-        st.write(message.content)
+    # Create an empty space at the bottom
+    bottom_space = st.empty()
 
-# Create an empty space at the bottom
-bottom_space = st.empty()
+    # Input box and form at the bottom
+    with st.form(key="my_form", clear_on_submit=True):
+        input_question = st.text_input("Type here.")
+        submit = st.form_submit_button("Ask Doctor AI")
 
-# Input box and form at the bottom
-with st.form(key='my_form', clear_on_submit=True):
-    input_question = st.text_input("Type here.")
-    submit = st.form_submit_button("Ask Doctor AI")
+    # If the "Submit" button is clicked
+    if submit:
+        # Get Doctor AI's response
+        response = get_chatmodel_response(input_question)
 
-# If the "Submit" button is clicked
-if submit:
-    # Get Doctor AI's response
-    response = get_chatmodel_response(input_question)
-
-    if response is not None:
-        # Display conversation history
-        for message in reversed(st.session_state['flowmessages']):
-            if isinstance(message, AIMessage):
-                st.header("Doctor AI", divider=True)
-                st.write(message.content)
-            elif isinstance(message, HumanMessage):
-                st.header(":blue[You]", divider=True)
-                st.write(message.content)
-        # Scroll to the bottom to show the latest input
-        bottom_space.markdown("<br>", unsafe_allow_html=True)
-    else:
-        st.subheader("Error: Unable to get response. Please try again later.")
+        if response is not None:
+            # Display conversation history
+            for message in reversed(st.session_state["flowmessages"]):
+                if isinstance(message, AIMessage):
+                    st.header("Doctor AI", divider=True)
+                    st.write(message.content)
+                elif isinstance(message, HumanMessage):
+                    st.header(":blue[You]", divider=True)
+                    st.write(message.content)
+            # Scroll to the bottom to show the latest input
+            bottom_space.markdown("<br>", unsafe_allow_html=True)
+        else:
+            st.subheader("Error: Unable to get response. Please try again later.")
