@@ -129,22 +129,6 @@ with st.form(key='my_form', clear_on_submit=True):
 # Add a "Clear Chat" button next to the "Submit" button
 clear_chat_button = st.button("Clear Chat", key="clear_button", help="Clear Chat")
 
-# Use st.markdown to apply custom styles to the "Clear Chat" button
-st.markdown(
-    """
-    <style>
-        .stButton {
-            background-color: #ff6666;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-left: 10px; /* Adjust the margin as needed */
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # If the "Clear Chat" button is clicked
 if clear_chat_button:
     # Clear the entire session and chat
