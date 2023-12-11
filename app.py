@@ -87,38 +87,6 @@ if 'flowmessages' not in st.session_state:
     ]
 
 
-
-# Streamlit UI
-st.markdown(
-    """
-    <style>
-        .stTextInput {
-            border-radius: 15px;
-            padding: 12px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            box-shadow: 2px 2px 5px #888888;
-            border: 1px solid #dddddd;
-            font-size: 16px;
-            width: 100%;
-            height: 100px;
-        }
-        .blue-text {
-            color: blue;
-        }
-        .black-text {
-            color: black;
-        }
-        .separator {
-            border-top: 2px solid #888888;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Display conversation history
 for message in reversed(st.session_state['flowmessages']):
     if isinstance(message, AIMessage):
@@ -132,9 +100,10 @@ for message in reversed(st.session_state['flowmessages']):
 with st.form(key='my_form', clear_on_submit=True):
     input_question = st.text_input("Type here.")
     submit = st.form_submit_button("Ask Doctor AI")
-    
-    # Add a "Clear Chat" button next to the "Submit" button
-    clear_chat_button = st.button("Clear Chat", help="Clear Chat")
+    # Use st.empty() to create an empty space to the right of the form
+    placeholder = st.empty()
+    # Add a "Clear Chat" button to the right of the form
+    clear_chat_button = placeholder.button("Clear Chat")
 
 # If the "Clear Chat" button is clicked
 if clear_chat_button:
