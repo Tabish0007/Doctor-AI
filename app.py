@@ -85,11 +85,10 @@ if 'flowmessages' not in st.session_state:
             """)
 
     ]
-with st.container():
-    # Create an empty space at the top
-    top_space = st.empty()
 
-    # Display conversation history below the empty space
+# Display conversation history in sidebar
+with st.sidebar:
+    st.title("Chat History")
     for message in reversed(st.session_state["flowmessages"]):
         if isinstance(message, AIMessage):
             st.header("Doctor AI", divider=True)
@@ -98,7 +97,9 @@ with st.container():
             st.header(":blue[You]", divider=True)
             st.write(message.content)
 
-    # Input box and form at the bottom
+# Main container for input form
+with st.container():
+    # Input form at the bottom
     with st.form(key="my_form", clear_on_submit=True):
         input_question = st.text_input("Type here.")
         submit = st.form_submit_button("Ask Doctor AI")
@@ -109,7 +110,7 @@ with st.container():
         response = get_chatmodel_response(input_question)
 
         if response is not None:
-            # Display conversation history
+            # Display conversation history in main container
             for message in reversed(st.session_state["flowmessages"]):
                 if isinstance(message, AIMessage):
                     st.header("Doctor AI", divider=True)
@@ -117,7 +118,5 @@ with st.container():
                 elif isinstance(message, HumanMessage):
                     st.header(":blue[You]", divider=True)
                     st.write(message.content)
-            # Scroll to the bottom to show the latest input
-            top_space.markdown("<br>", unsafe_allow_html=True)
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
