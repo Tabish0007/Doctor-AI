@@ -156,15 +156,15 @@ if submit:
                     st.header(":blue[You]", divider=True)
                     st.write(message.content)
 
-                # Text-to-speech
-                audio_response = openai.audio.speech.create(
-                    model="tts-1",
-                    voice="nova",
-                    input=response
-                )
-        
-                # Embed audio in the webpage without saving it
-                st.audio(audio_response.content, format="audio/mp3")  
+            # Text-to-speech
+            audio_response = openai.audio.speech.create(
+                model="tts-1",
+                voice="nova",
+                input=response
+            )
+    
+            # Embed audio in the webpage without saving it
+            st.audio(audio_response.content, format="audio/mp3")  
 
 
                     
