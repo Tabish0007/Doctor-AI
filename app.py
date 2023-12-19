@@ -152,7 +152,7 @@ if submit:
             # Display conversation history
             for message in st.session_state['flowmessages']:
                 if isinstance(message, AIMessage):
-                    st.header("Doctor AI 🔊", divider=True)
+                    st.header("Doctor AI", divider=True)
                     st.write(message.content)
                 elif isinstance(message, HumanMessage):
                     st.header(":blue[You]", divider=True)
@@ -166,13 +166,10 @@ if submit:
                 response_format="mp3",
                 speed=1.0
             )
-
+            
             # Embed audio in the webpage without saving it
             st.header(':blue[Listen or Download] :loud_sound:')
-            
-            # Check if the "🔊" button is clicked
-            if st.button("🔊 Play Audio"):
-                st.audio(audio_response.content, format="audio/mp3", start_time=0)
+            st.audio(audio_response.content,format="audio/wav",start_time=0) 
 
 
 
