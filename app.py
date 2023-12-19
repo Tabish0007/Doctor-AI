@@ -4,7 +4,7 @@ import openai
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from langchain.chat_models import ChatOpenAI
 
-st.snow()
+
 
 def get_chatmodel_response(question):
     # Retry logic
@@ -32,7 +32,7 @@ def get_chatmodel_response(question):
 
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="wide", initial_sidebar_state="collapsed")
-
+st.snow()
 
 st.header("Hello, I am Doctor AI. How can I help you?")
 
