@@ -171,10 +171,9 @@ if submit:
             
             # Listen Button
             if st.button("🔊 Listen"):
-                st.audio(audio_response.content, format="audio/mp3", start_time=0)
+                st.audio(audio_response.content, format="audio/wav", start_time=0)
 
-            # Download Button
-            st.button("💾 Download Audio", key="download_button", on_click=download_audio, args=(audio_response.content,))
+            
                     
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
