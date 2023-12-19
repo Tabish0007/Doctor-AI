@@ -141,7 +141,6 @@ if clear_chat_button:
     st.session_state['flowmessages'] = []
     
 # If the "Submit" button is clicked
-# If the "Submit" button is clicked
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
@@ -169,13 +168,13 @@ if submit:
             
             # Embed audio in the webpage without saving it
             st.header(':blue[Listen or Download] :loud_sound:')
-            st.audio(audio_response.content,format="audio/wav",start_time=0) 
+            
+            # Listen Button
+            if st.button("🔊 Listen"):
+                st.audio(audio_response.content, format="audio/mp3", start_time=0)
 
-
-
+            # Download Button
+            st.button("💾 Download Audio", key="download_button", on_click=download_audio, args=(audio_response.content,))
                     
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
-
-
-            
