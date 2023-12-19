@@ -167,11 +167,8 @@ if submit:
             )
             
             # Embed audio in the webpage without saving it
-            st.header(':blue[Listen or Download] :loud_sound:')
-            
-            # Listen Button
-            if st.button("🔊 Listen"):
-                st.audio(audio_response.content, format="audio/wav", start_time=0)
+            st.header(':blue[Listen] :loud_sound:')
+            st.audio(audio_response.content,format="audio/wav",start_time=0)
 
             
                     
