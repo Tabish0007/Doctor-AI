@@ -166,7 +166,8 @@ if submit:
             )
             
             # Embed audio in the webpage without saving it
-            st.audio(audio_response.content,format="audio/wav")  
+            st.header('Listen or Download :blue[cool] :loud_sound:')
+            st.audio(audio_response.content,format="audio/wav",start_time=0)  
 
 
                     
