@@ -141,6 +141,7 @@ if clear_chat_button:
     st.session_state['flowmessages'] = []
     
 # If the "Submit" button is clicked
+# If the "Submit" button is clicked
 if submit:
     # Display loading message while processing
     with st.spinner("Analyzing..."):
@@ -151,23 +152,28 @@ if submit:
             # Display conversation history
             for message in st.session_state['flowmessages']:
                 if isinstance(message, AIMessage):
-                    # Display Doctor AI's response header and content
-                    doctor_ai_header = st.header("Doctor AI", divider=True)
-                    doctor_ai_content = st.write(message.content)
+                    st.header("Doctor AI 🔊", divider=True)
+                    st.write(message.content)
+                elif isinstance(message, HumanMessage):
+                    st.header(":blue[You]", divider=True)
+                    st.write(message.content)
 
-                    # Add a button to play the audio
-                    if st.button("🔊 Play Audio", key="audio_button"):
-                        # Text-to-speech
-                        audio_response = openai.audio.speech.create(
-                            model="tts-1",
-                            voice="nova",
-                            input=response,
-                            response_format="mp3",
-                            speed=1.0
-                        )
-                        
-                        # Play the audio
-                        st.audio(audio_response.content, format="audio/wav", start_time=0)  
+            # Text-to-speech
+            audio_response = openai.audio.speech.create(
+                model="tts-1",
+                voice="nova",
+                input=response,
+                response_format="mp3",
+                speed=1.0
+            )
+
+            # Embed audio in the webpage without saving it
+            st.header(':blue[Listen or Download] :loud_sound:')
+            
+            # Check if the "🔊" button is clicked
+            if st.button("🔊 Play Audio"):
+                st.audio(audio_response.content, format="audio/mp3", start_time=0)
+
 
 
                     
