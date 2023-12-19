@@ -4,6 +4,7 @@ import openai
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from langchain.chat_models import ChatOpenAI
 
+st.snow()
 
 def get_chatmodel_response(question):
     # Retry logic
@@ -166,7 +167,7 @@ if submit:
             )
             
             # Embed audio in the webpage without saving it
-            st.header('Listen or Download :blue[cool] :loud_sound:')
+            st.header(':blue[Listen or Download] :loud_sound:')
             st.audio(audio_response.content,format="audio/wav",start_time=0)  
 
 
