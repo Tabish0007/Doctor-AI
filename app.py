@@ -32,7 +32,7 @@ def get_chatmodel_response(question):
 
 # Streamlit app setup
 st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="wide", initial_sidebar_state="collapsed")
-st.snow()
+# st.snow()
 
 st.header("Hello, I am Doctor AI. How can I help you?")
 
