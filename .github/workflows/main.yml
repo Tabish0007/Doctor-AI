@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Adjust OS if needed
+    runs-on: windows-latest  # Adjust OS if needed
     steps:
       - uses: actions/checkout@v3
 
