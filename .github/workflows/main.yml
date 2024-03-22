@@ -10,8 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: huggingface/hugging-push@v3
+      - uses: huggingface/hugging-push@v4
         with:
           token: ${{ secrets.HF_HUB_TOKEN }}
-          repo_url: https://huggingface.co/<username>/<model-repo>  # Replace with your Hub URL (if applicable)
           commit_message: "Deploy from branch ${{ github.ref }}"  # Optional commit message
