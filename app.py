@@ -41,7 +41,7 @@ load_dotenv()
 import os
 
 # ChatOpenAI class
-chat = ChatOpenAI(temperature=0.7)
+chat = ChatOpenAI(temperature=0.2)
 
 if 'flowmessages' not in st.session_state:
     st.session_state['flowmessages'] = [
