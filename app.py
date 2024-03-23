@@ -8,7 +8,7 @@ from langchain.chat_models import ChatOpenAI
 
 def get_chatmodel_response(question):
     # Retry logic
-    max_retries = 3
+    max_retries = 10
     retries = 0
 
     while retries < max_retries:
