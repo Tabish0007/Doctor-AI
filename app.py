@@ -3,8 +3,10 @@ import time
 import openai
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from langchain.chat_models import ChatOpenAI
+import os
 
-
+# Retrieve OpenAI API key from environment variable
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 def get_chatmodel_response(question):
     # Retry logic
@@ -35,10 +37,6 @@ st.set_page_config(page_title="Doctor AI", page_icon="💊", layout="wide", init
 # st.snow()
 
 st.header("Hello, I am Doctor AI. How can I help you?")
-
-from dotenv import load_dotenv
-load_dotenv()
-import os
 
 # ChatOpenAI class
 chat = ChatOpenAI(temperature=0.2)
@@ -90,9 +88,7 @@ Perform the following tasks:
 - If the user input is unrelated to health issues, gently guide them to provide relevant health-related information.
 
 """)
-]
-
-
+    ]
 
 # Streamlit UI
 with st.form(key='my_form', clear_on_submit=True):
@@ -129,9 +125,6 @@ with st.form(key='my_form', clear_on_submit=True):
     input_question = st.text_input("Type here.", key="input")
     submit = st.form_submit_button("Ask Doctor AI")
 
-
-
-
 # Add a "Clear Chat" button next to the "Submit" button
 clear_chat_button = st.button("Start a New Chat", key="clear_button")
 
@@ -139,7 +132,7 @@ clear_chat_button = st.button("Start a New Chat", key="clear_button")
 if clear_chat_button:
     # Clear the entire session and chat
     st.session_state['flowmessages'] = []
-    
+
 # If the "Submit" button is clicked
 if submit:
     # Display loading message while processing
@@ -165,12 +158,10 @@ if submit:
                 response_format="mp3",
                 speed=1.0
             )
-            
+
             # Embed audio in the webpage without saving it
             st.header(':blue[Listen] :loud_sound:')
-            st.audio(audio_response.content,format="audio/wav",start_time=0)
+            st.audio(audio_response.content, format="audio/wav", start_time=0)
 
-            
-                    
         else:
             st.subheader("Error: Unable to get response. Please try again later.")
